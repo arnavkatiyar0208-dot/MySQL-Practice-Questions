@@ -24,29 +24,3 @@ This repository contains 20 MySQL practice questions and their solutions. The pr
 13. ORDER BY
 14. LIMIT
 15. IN
-
-## Practice Questions
-This project includes 20 SQL queries covering:
-- Customer filtering
-- Income-based filtering
-- Pattern matching
-- Highest and second-highest income
-- Handling NULL values
-- Finding unique states and cities
-- Date-based filtering
-- Sorting and limiting records
-
-## Tools Used
-- MySQL
-- MySQL Workbench
-- GitHub
-
-## How to Run
-1. Install MySQL Server and MySQL Workbench.
-2. Create the customers_database database.
-3. Execute the database creation and INSERT statements.
-4. Open MySQL_Select_Search_Questions.sql.
-5. Execute the queries individually or together.
-
-## Author
-SQL Practice Project – MySQL Beginner Level
