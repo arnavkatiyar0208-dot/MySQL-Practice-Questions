@@ -194,3 +194,179 @@ INSERT INTO customers
 VALUES (50, 'Yasmin', 'Basak', '1986-11-09', '9357838056', 'H.No. 320, Amble Road', 'Kanpur', 'Uttar Pradesh', 4047, 83400.6, 'HR');
 
 select * from customers;
+
+-- Q1. Find all customers who live in the state
+-- of Delhi and have more than 100 points.
+
+SELECT *
+FROM customers
+WHERE state = 'Delhi'
+AND points > 100;
+
+
+-- Q2. Display names and income of customers
+-- whose income is between 50,000 and 100,000.
+
+SELECT first_name, last_name, monthly_income
+FROM customers
+WHERE monthly_income BETWEEN 50000 AND 100000;
+
+
+-- Q3. List all customers whose first name
+-- starts with the letter 'A'.
+
+SELECT *
+FROM customers
+WHERE first_name LIKE 'A%';
+
+
+-- Q4. Find customers who either live in Delhi
+-- or have more than 100 points.
+
+SELECT *
+FROM customers
+WHERE state = 'Delhi'
+OR points > 100;
+
+
+-- Q5. Retrieve the customer(s) with the
+-- highest monthly income.
+
+SELECT *
+FROM customers
+WHERE monthly_income = (
+    SELECT MAX(monthly_income)
+    FROM customers
+);
+
+
+-- Q6. Find the customer(s) with the
+-- second highest monthly income.
+
+SELECT *
+FROM customers
+WHERE monthly_income = (
+    SELECT MAX(monthly_income)
+    FROM customers
+    WHERE monthly_income < (
+        SELECT MAX(monthly_income)
+        FROM customers
+    )
+);
+
+
+-- Q7. List customers whose phone number
+-- is missing (NULL or empty string).
+
+SELECT *
+FROM customers
+WHERE phone IS NULL
+OR phone = '';
+
+
+-- Q8. Find all customers whose sector
+-- is not missing.
+
+SELECT *
+FROM customers
+WHERE sector IS NOT NULL
+AND sector != '';
+
+
+-- Q9. Get the list of unique states
+-- from the customer table.
+
+SELECT DISTINCT state
+FROM customers;
+
+
+-- Q10. Count how many different cities
+-- customers come from.
+
+SELECT COUNT(DISTINCT city) AS total_cities
+FROM customers;
+
+
+-- Q11. Find all customers born before
+-- January 1st, 1990.
+
+SELECT *
+FROM customers
+WHERE birth_date < '1990-01-01';
+
+
+-- Q12. List customers born between
+-- 1985 and 2000.
+
+SELECT *
+FROM customers
+WHERE birth_date BETWEEN '1985-01-01'
+AND '2000-12-31';
+
+
+-- Q13. Get names of customers whose first
+-- name is exactly 5 characters long.
+
+SELECT first_name
+FROM customers
+WHERE LENGTH(first_name) = 5;
+
+
+-- Q14. Get the top 5 customers with
+-- the highest points.
+
+SELECT *
+FROM customers
+ORDER BY points DESC
+LIMIT 5;
+
+
+-- Q15. Find customers whose first name
+-- contains only alphabets and is at least
+-- 3 characters long.
+
+SELECT *
+FROM customers
+WHERE first_name REGEXP '^[A-Za-z]{3,}$';
+
+
+-- Q16. Show customers whose address
+-- includes the word 'Road'.
+
+SELECT *
+FROM customers
+WHERE address LIKE '%Road%';
+
+
+-- Q17. Find customers whose first name
+-- ends with the letter 'n'.
+
+SELECT *
+FROM customers
+WHERE first_name LIKE '%n';
+
+
+-- Q18. Show all customers sorted by
+-- monthly income in descending order.
+
+SELECT *
+FROM customers
+ORDER BY monthly_income DESC;
+
+
+-- Q19. Display customers who do not
+-- live in Mumbai.
+
+SELECT *
+FROM customers
+WHERE city != 'Mumbai';
+
+
+-- Q20. List customers who have points
+-- greater than 100 and live in either
+-- Delhi, Pune, or Chennai.
+
+SELECT *
+FROM customers
+WHERE points > 100
+AND city IN ('Delhi', 'Pune', 'Chennai');
